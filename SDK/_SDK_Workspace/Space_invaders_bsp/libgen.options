@@ -1,3 +1,0 @@
-PROCESSOR=microblaze_0
-REPOSITORIES=-lp D:/RA116-2012/LPRS2/LPRS2_Space_Invaders_AXI
-HWSPEC=../basic_system_hw_platform/system.xml
