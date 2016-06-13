@@ -130,6 +130,15 @@ entity user_logic is
     blue_o         : out std_logic_vector(7 downto 0);
 	 interrupt_o	 : out std_logic;
     -- ADD USER PORTS ABOVE THIS LINE ------------------
+	
+    -- Direct Write FSL Signals
+	FSL_Clk	: in	std_logic;
+	FSL_Rst	: in	std_logic;
+	FSL_S_Clk	: in	std_logic;
+	FSL_S_Read	: out	std_logic;
+	FSL_S_Data	: in	std_logic_vector(0 to 31);
+	FSL_S_Control	: in	std_logic;
+	FSL_S_Exists	: in	std_logic;
 
     -- DO NOT EDIT BELOW THIS LINE ---------------------
     -- Bus protocol ports, do not add to or delete
@@ -368,6 +377,21 @@ architecture IMP of user_logic is
   signal unit_sel            : std_logic_vector(1 downto 0);
   signal unit_addr           : std_logic_vector(GRAPH_MEM_ADDR_WIDTH-1 downto 0);--15+6+1
   signal reg_we              : std_logic;
+  
+  type state_type is (ADDR, DATA);
+  signal current_s, next_s: state_type;
+  signal fsl_pixel_clk           : std_logic;
+  signal fsl_pixel_addr       : std_logic_vector(GRAPH_MEM_ADDR_WIDTH-1 downto 0);
+  signal fsl_pixel_value         : std_logic_vector(GRAPH_MEM_DATA_WIDTH-1 downto 0);
+  signal fsl_pixel_value2         : std_logic_vector(GRAPH_MEM_DATA_WIDTH-1 downto 0);
+  signal fsl_pixel_we            : std_logic;
+  signal fsl_pixel_addr_reg_we              : std_logic;
+  signal fsl_data : std_logic_vector(31 downto 0);
+  
+  signal fsl_pixel_addr_reg				 : std_logic_vector(GRAPH_MEM_ADDR_WIDTH-1 downto 0);
+  
+  
+  
 
 begin
   --USER logic implementation added here
@@ -576,10 +600,14 @@ begin
     text_data_i        => char_value,
     text_we_i          => char_we,
     -- graphics mode interface
-    graph_clk_i        => Bus2IP_Clk,
-    graph_addr_i       => pixel_address,
-    graph_data_i       => pixel_value,
-    graph_we_i         => pixel_we,
+--    graph_clk_i        => Bus2IP_Clk,
+--    graph_addr_i       => pixel_address,
+--    graph_data_i       => pixel_value,
+--    graph_we_i         => pixel_we,
+	graph_clk_i        => fsl_pixel_clk,
+    graph_addr_i       => fsl_pixel_addr,
+    graph_data_i       => fsl_pixel_value,
+    graph_we_i         => fsl_pixel_we,
     -- cfg
     font_size_i        => font_size(3 downto 0),
     show_frame_i       => show_frame,
@@ -637,4 +665,61 @@ begin
   );
   pix_clock_n <= not(pix_clock_s);
 
+	 
+	FSL_S_Read <= '1';
+
+	process(FSL_Clk, FSL_Rst) begin
+		if(FSL_Rst = '1') then
+			current_s <= ADDR;
+		elsif (rising_edge(FSL_Clk)) then
+			current_s <= next_s;
+		end if;
+	end process;
+	 
+	process (current_s, FSL_S_Exists) begin
+		fsl_pixel_we <= '0';
+		fsl_pixel_addr_reg_we <= '0';
+		next_s <= current_s;
+		case current_s is
+			when ADDR =>
+				if(FSL_S_Exists = '1') then
+					fsl_pixel_addr_reg_we <= '1';
+					next_s <= DATA;
+				end if;
+	
+			when DATA =>
+				if(FSL_S_Exists = '1') then
+					fsl_pixel_we <= '1';
+					next_s <= ADDR;
+				end if;
+		end case;
+	end process;
+	
+	fsl_data <= FSL_S_Data;
+	process(FSL_Clk, FSL_Rst) begin
+		if(FSL_Rst = '1') then
+			fsl_pixel_addr_reg <= (others=>'0');
+		elsif(rising_edge(FSL_Clk)) then
+			if(fsl_pixel_addr_reg_we = '1') then
+				fsl_pixel_addr_reg <= fsl_data(GRAPH_MEM_ADDR_WIDTH-1 downto 0);
+				--fsl_pixel_addr_reg <= fsl_pixel_addr_reg + 1;
+			end if;
+		end if;
+	end process;
+	
+	fsl_pixel_clk <= FSL_Clk;
+	fsl_pixel_addr <= fsl_pixel_addr_reg;
+	fsl_pixel_value <= fsl_data;
+	
+
+	-- fsl_pixel_clk <= FSL_Clk;
+	-- process(FSL_Clk) begin
+		-- if (rising_edge(FSL_Clk)) then
+			-- fsl_pixel_addr <= fsl_pixel_addr + 1;
+			-- fsl_pixel_value2 <= FSL_S_Data;
+		-- end if;
+	-- end process;
+	-- fsl_pixel_value <= fsl_pixel_value2(31 downto 4) & x"1";
+	-- fsl_pixel_we <= '1';
+	
 end IMP;

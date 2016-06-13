@@ -135,7 +135,7 @@ entity vga_periph_mem is
     -- ADD USER GENERICS BELOW THIS LINE ---------------
     --USER generics added here
     -- ADD USER GENERICS ABOVE THIS LINE ---------------
-
+	
     -- DO NOT EDIT BELOW THIS LINE ---------------------
     -- Bus protocol parameters, do not add to or delete
     C_S_AXI_DATA_WIDTH             : integer              := 32;
@@ -173,6 +173,17 @@ entity vga_periph_mem is
     blue_o         : out std_logic_vector(7 downto 0);
 	 interrupt_o	 : out std_logic;
     -- ADD USER PORTS ABOVE THIS LINE ------------------
+	
+    -- Direct Write FSL Signals
+	 
+		FSL_Clk	: in	std_logic;
+		FSL_Rst	: in	std_logic;
+		FSL_S_Clk	: in	std_logic;
+		FSL_S_Read	: out	std_logic;
+		FSL_S_Data	: in	std_logic_vector(0 to 31);
+		FSL_S_Control	: in	std_logic;
+		FSL_S_Exists	: in	std_logic;
+
 
     -- DO NOT EDIT BELOW THIS LINE ---------------------
     -- Bus protocol ports, do not add to or delete
@@ -406,6 +417,16 @@ begin
       blue_o         => blue_o,
 		interrupt_o		=> interrupt_o,
       -- MAP USER PORTS ABOVE THIS LINE ------------------
+
+    -- Direct Write FSL Signals
+      FSL_Clk	=> FSL_Clk,
+		FSL_Rst	=> FSL_Rst,
+		FSL_S_Clk	=> FSL_S_Clk,
+		FSL_S_Read  => FSL_S_Read,
+		FSL_S_Data	=> FSL_S_Data,
+		FSL_S_Control => FSL_S_Control,
+		FSL_S_Exists => FSL_S_Exists,
+
 
       Bus2IP_Clk                     => ipif_Bus2IP_Clk,
       Bus2IP_Resetn                  => ipif_Bus2IP_Resetn,
