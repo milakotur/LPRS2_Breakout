@@ -29,7 +29,7 @@ void vga_interrupt_handler(void *BaseAddress)
 		projectil_speed = 0;
 	}
 	else
-		projectil_speed+=2;
+		projectil_speed+=1;
 	/*************************************/
 
 	/* signals for movement of rows of invaders */

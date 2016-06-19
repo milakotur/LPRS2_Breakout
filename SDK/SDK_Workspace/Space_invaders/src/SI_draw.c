@@ -2,7 +2,7 @@
  * SI_draw.c
  *
  *  Created on: 16.06.2015.
- *      Author: Nenad Pekez, Sasa Talosi
+ *      Author: Standzi, Marko, Dva geja (Urosko i Milan GAY)
  */
 
 #include "SI_draw.h"
@@ -201,7 +201,7 @@ void draw_ship(Xuint32 BaseAddress, Xuint8 x_crdnt, Xuint8 y_crdnt)
 			}
 			else {
 				PUT_TO_FSL((i-1), 0x22333333);
-				PUT_TO_FSL((i+0), 0x88844888);
+				PUT_TO_FSL((i+0), 0x88833888);
 				PUT_TO_FSL((i+1), 0x33333322);
 			}
 		}
@@ -228,7 +228,7 @@ void draw_ship(Xuint32 BaseAddress, Xuint8 x_crdnt, Xuint8 y_crdnt)
 			}
 			else {
 				PUT_TO_FSL((i-1), 0xAA333333);
-				PUT_TO_FSL((i+0), 0x88844888);
+				PUT_TO_FSL((i+0), 0x88833888);
 				PUT_TO_FSL((i+1), 0x333333AA);
 			}
 		}

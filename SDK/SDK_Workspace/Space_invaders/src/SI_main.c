@@ -3,7 +3,7 @@
  * SI_main.c
  *
  *  Created on: 16.06.2015.
- *      Authors: Nenad Pekez, Sasa Talosi
+ *      Authors: Standzi, Marko, Dva geja (Urosko i Milan GAY)
  */
 
 #include "SI_logic.h"
@@ -23,7 +23,7 @@ void init_colors()
 	VGA_PERIPH_MEM_mWriteMemory(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR + 0x2C, 0x000000);	//color 7
 	VGA_PERIPH_MEM_mWriteMemory(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR + 0x30, 0xffffff);	//color 8
 	VGA_PERIPH_MEM_mWriteMemory(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR + 0x34, 0xff1493);	//color 9
-	VGA_PERIPH_MEM_mWriteMemory(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR + 0x38, 0xffb963);	//color 10 A narandzasta
+	VGA_PERIPH_MEM_mWriteMemory(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR + 0x38, 0xff6666);	//color 10 A
 	VGA_PERIPH_MEM_mWriteMemory(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR + 0x3C, 0x556b2f);	//color 11 B
 	VGA_PERIPH_MEM_mWriteMemory(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR + 0x40, 0x191970);	//color 12 C
 	VGA_PERIPH_MEM_mWriteMemory(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR + 0x44, 0xb8860b);	//color 13 D
@@ -162,7 +162,7 @@ int main()
 	/* VARIABLES DECLARATION */
 	/*************************/
 
-	Xuint8 i, j;
+	Xuint8 i, j, k1, k2, k3;
 	Xuint8 spaceship_dir;
 	Xuint8 invader_x;
 
@@ -249,6 +249,37 @@ int main()
 			generate_init_invaders_positions();
 
 			clear_graphics_screen(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR);
+
+			if(level > 1)
+			{
+				for(k1 = 0; k1 < 230; k1++)
+					for(k2 = 0; k2 < 230; k2++)
+						for(k3 = 0; k3 < 20; k3++)
+						{
+							set_cursor(6543);
+							print_string(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, "NEXT LEVEL", 10);
+						}
+				clear_text_screen(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR);
+				set_cursor(666);
+				clear_text_screen(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR);
+				print_string(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, "SCORE", strlen("SCORE"));
+
+				set_cursor(688);
+				num_to_str(str, 0, num_len(0));
+				print_string(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, str, strlen(str));
+
+				set_cursor(710);
+				print_string(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, "LIVES", strlen("LIVES"));
+
+				set_cursor(732);
+				num_to_str(str, lives, num_len(lives));
+				print_string(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, str, strlen(str));
+
+				set_cursor(751);
+				print_string(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, "LEVEL", strlen("LEVEL"));
+
+			}
+
 			init_draw(row);
 
 			while(!((invaders_num == 0) || (game_over == 1)))
