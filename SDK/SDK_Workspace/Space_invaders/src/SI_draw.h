@@ -19,6 +19,9 @@ void draw_invader_projectile(Xuint32, Xuint8, Xuint8);
 void erase_projectile(Xuint32, Xuint8, Xuint8);
 void erase_square(Xuint32, Xuint8, Xuint8);
 void clear_graphics_screen(Xuint32);
+void draw_X(Xuint32, Xuint8, Xuint8);
+void erase_X(Xuint32, Xuint8, Xuint8);
+void draw_red(Xuint32, Xuint8, Xuint8, Xuint8);
 
 #endif /* SI_DRAW_H_ */
 

@@ -14,15 +14,15 @@ void draw_square(Xuint32 BaseAddress, Xuint8 x_crdnt, Xuint8 y_crdnt)
 
 	for (j = 0 + 32*y_crdnt; j < 32 + 32*y_crdnt; j++)
 	{
-		PUT_TO_FSL((j*(640/8) + k-2),0xA0A0A0A0);
-		PUT_TO_FSL((j*(640/8) + k-1),0xA0A0A0A0);
+		PUT_TO_FSL((j*(640/8) + k-2), 0x00A0A000);
+		PUT_TO_FSL((j*(640/8) + k-1), 0x0A0A0A0A);
 		PUT_TO_FSL((j*(640/8) + k+0), 0xA0A0A0A0);
-		PUT_TO_FSL((j*(640/8) + k+1), 0xA0A0A0A0);
-		PUT_TO_FSL((j*(640/8) + k+2),0xA0A0A0A0);
+		PUT_TO_FSL((j*(640/8) + k+1), 0x0A0A0A0A);
+		PUT_TO_FSL((j*(640/8) + k+2), 0x00A0A000);
 	}
 }
 
-void draw_invader(Xuint32 BaseAddress, Xuint8 x_crdnt, Xuint8 y_crdnt, Xuint8 type)
+void draw_invaderX(Xuint32 BaseAddress, Xuint8 x_crdnt, Xuint8 y_crdnt, Xuint8 type)
 {
 	int i, j, k;
 	k = x_crdnt;
@@ -174,6 +174,115 @@ void draw_invader_2(Xuint32 BaseAddress, Xuint8 x_crdnt, Xuint8 y_crdnt)
 	}
 }
 
+void draw_invaderY(Xuint32 BaseAddress, Xuint8 x_crdnt, Xuint8 y_crdnt, Xuint8 type)
+{
+	int i, j, k;
+	k = x_crdnt;
+
+	if(type == 1)
+	{
+		for (j = 16 + 32*y_crdnt; j < 32 + 32*y_crdnt; j++)
+		{
+			i = j*(640/8) + k;
+			if (j >= (16 + 32*y_crdnt) && j < (18 + 32*y_crdnt)) {
+				PUT_TO_FSL(i-1,0x00000000);
+				PUT_TO_FSL(i+0,0x11111111);
+				PUT_TO_FSL(i+1,0x00000000);
+			}
+			else if (j >= (18 + 32*y_crdnt) && j < (20 + 32*y_crdnt)) {
+				PUT_TO_FSL(i-1,0x00000011);
+				PUT_TO_FSL((i+0), 0x11111111);
+				PUT_TO_FSL((i+1), 0x11000000);
+			}
+			else if (j >= (20 + 32*y_crdnt) && j < (22 + 32*y_crdnt)) {
+				PUT_TO_FSL((i-1), 0x00001111);
+				PUT_TO_FSL((i+0), 0x11111111);
+				PUT_TO_FSL((i+1), 0x11110000);
+			}
+			else if (j >= (22 + 32*y_crdnt) && j < (24 + 32*y_crdnt)) {
+				PUT_TO_FSL((i-1), 0x00111100);
+				PUT_TO_FSL((i+0), 0x11111111);
+				PUT_TO_FSL((i+1), 0x00111100);
+			}
+			else if (j >= (24 + 32*y_crdnt) && j < (26 + 32*y_crdnt)) {
+				PUT_TO_FSL((i-1), 0x11111111);
+				PUT_TO_FSL((i+0), 0x11111111);
+				PUT_TO_FSL((i+1), 0x11111111);
+			}
+			else if (j >= (26 + 32*y_crdnt) && j < (28 + 32*y_crdnt)) {
+				PUT_TO_FSL((i-1), 0x11111111);
+				PUT_TO_FSL((i+0), 0x11100111);
+				PUT_TO_FSL((i+1), 0x11111111);
+			}
+			else if (j >= (28 + 32*y_crdnt) && j < (30 + 32*y_crdnt)) {
+				PUT_TO_FSL((i-1), 0x00000011);
+				PUT_TO_FSL((i+0), 0x00111100);
+				PUT_TO_FSL((i+1), 0x11000000);
+			}
+			else {
+				PUT_TO_FSL((i-1), 0x00011111);
+				PUT_TO_FSL((i+0), 0x10000001);
+				PUT_TO_FSL((i+1), 0x11111000);
+			}
+		}
+	}
+	else
+	{
+		for (j = 16 + 32*y_crdnt; j < 32 + 32*y_crdnt; j++)
+		{
+			i = j*(640/8) + k;
+			if (j >= (16 + 32*y_crdnt) && j < (18 + 32*y_crdnt)) {
+				PUT_TO_FSL(i-1,0x02200000);
+				PUT_TO_FSL(i+0,0x11111111);
+				PUT_TO_FSL(i+1,0x00000220);
+			}
+			else if (j >= (18 + 32*y_crdnt) && j < (20 + 32*y_crdnt)) {
+				PUT_TO_FSL(i-1,0x00220011);
+				PUT_TO_FSL((i+0), 0x11111111);
+				PUT_TO_FSL((i+1), 0x11002200);
+			}
+			else if (j >= (20 + 32*y_crdnt) && j < (22 + 32*y_crdnt)) {
+				PUT_TO_FSL((i-1), 0x00001111);
+				PUT_TO_FSL((i+0), 0x11111111);
+				PUT_TO_FSL((i+1), 0x11110000);
+			}
+			else if (j >= (22 + 32*y_crdnt) && j < (24 + 32*y_crdnt)) {
+				PUT_TO_FSL((i-1), 0x00111121);
+				PUT_TO_FSL((i+0), 0x11111111);
+				PUT_TO_FSL((i+1), 0x12111100);
+			}
+			else if (j >= (24 + 32*y_crdnt) && j < (26 + 32*y_crdnt)) {
+				PUT_TO_FSL((i-1), 0x11111122);
+				PUT_TO_FSL((i+0), 0x11111111);
+				PUT_TO_FSL((i+1), 0x22111111);
+			}
+			else if (j >= (26 + 32*y_crdnt) && j < (28 + 32*y_crdnt)) {
+				PUT_TO_FSL((i-1), 0x11111111);
+				PUT_TO_FSL((i+0), 0x11000011);
+				PUT_TO_FSL((i+1), 0x11111111);
+			}
+			else if (j >= (28 + 32*y_crdnt) && j < (30 + 32*y_crdnt)) {
+				PUT_TO_FSL((i-1), 0x00000011);
+				PUT_TO_FSL((i+0), 0x00111100);
+				PUT_TO_FSL((i+1), 0x11000000);
+			}
+			else {
+				PUT_TO_FSL((i-1), 0x00011111);
+				PUT_TO_FSL((i+0), 0x10000001);
+				PUT_TO_FSL((i+1), 0x11111000);
+			}
+		}
+	}
+}
+
+void draw_invader(Xuint32 BaseAddress, Xuint8 x_crdnt, Xuint8 y_crdnt, Xuint8 type)
+{
+	if(level%2 == 0)
+		draw_invaderY(BaseAddress, x_crdnt, y_crdnt, type);
+	else
+		draw_invaderX(BaseAddress, x_crdnt, y_crdnt, type);
+}
+
 void draw_ship(Xuint32 BaseAddress, Xuint8 x_crdnt, Xuint8 y_crdnt)
 {
 	int i, j, k;
@@ -195,9 +304,9 @@ void draw_ship(Xuint32 BaseAddress, Xuint8 x_crdnt, Xuint8 y_crdnt)
 				//PUT_TO_FSL((i+1), 0x00000000);
 			}
 			else if (j >= (12 + 32*y_crdnt) && j < (16 + 32*y_crdnt)) {
-				PUT_TO_FSL((i-1), 0x00222222);
+				PUT_TO_FSL((i-1), 0x22222222);
 				PUT_TO_FSL((i+0), 0x33333333);
-				PUT_TO_FSL((i+1), 0x22222200);
+				PUT_TO_FSL((i+1), 0x22222222);
 			}
 			else {
 				PUT_TO_FSL((i-1), 0x22333333);
@@ -320,5 +429,133 @@ void clear_graphics_screen(Xuint32 BaseAddress)
 	int i;
 	for (i = 0; i < 9600*4; i++){
 	    PUT_TO_FSL(i, 0x00000000);
+	}
+}
+
+void draw_X(Xuint32 BaseAddress, Xuint8 x_crdnt, Xuint8 y_crdnt)
+{
+	int j, k;
+	k = x_crdnt;
+
+	for (j = 0 + 32*y_crdnt; j < 32 + 32*y_crdnt; j++)
+	{
+		PUT_TO_FSL((j*(640/8) + k-2), 0x00000000);
+		PUT_TO_FSL((j*(640/8) + k-1), 0x0AA00AA0);
+		PUT_TO_FSL((j*(640/8) + k+0), 0x00AAA000);
+		PUT_TO_FSL((j*(640/8) + k+1), 0x0AA00AA0);
+		PUT_TO_FSL((j*(640/8) + k+2), 0x00000000);
+	}
+}
+
+void erase_X(Xuint32 BaseAddress, Xuint8 x_crdnt, Xuint8 y_crdnt)
+{
+	int j, k;
+	k = x_crdnt;
+
+	for (j = 0 + 32*y_crdnt; j < 32 + 32*y_crdnt; j++)
+	{
+		PUT_TO_FSL((j*(640/8) + k-2), 0x00000000);
+		PUT_TO_FSL((j*(640/8) + k-1), 0x00000000);
+		PUT_TO_FSL((j*(640/8) + k+0), 0x00000000);
+		PUT_TO_FSL((j*(640/8) + k+1), 0x00000000);
+		PUT_TO_FSL((j*(640/8) + k+2), 0x00000000);
+	}
+}
+
+void draw_red(Xuint32 BaseAddress, Xuint8 x_crdnt, Xuint8 y_crdnt, Xuint8 type)
+{
+	int i, j, k;
+	k = x_crdnt;
+
+	if(type == 1)
+	{
+		for (j = 16 + 32*y_crdnt; j < 32 + 32*y_crdnt; j++)
+		{
+			i = j*(640/8) + k;
+			if (j >= (16 + 32*y_crdnt) && j < (18 + 32*y_crdnt)) {
+				PUT_TO_FSL(i-1,0x00000220);
+				PUT_TO_FSL(i+1,0x02200000);
+			}
+			else if (j >= (18 + 32*y_crdnt) && j < (20 + 32*y_crdnt)) {
+				PUT_TO_FSL(i-1,0x00000002);
+				PUT_TO_FSL((i+0), 0x20000002);
+				PUT_TO_FSL((i+1), 0x20000000);
+			}
+			else if (j >= (20 + 32*y_crdnt) && j < (22 + 32*y_crdnt)) {
+				PUT_TO_FSL((i-1), 0x00000222);
+				PUT_TO_FSL((i+0), 0x22222222);
+				PUT_TO_FSL((i+1), 0x22200000);
+			}
+			else if (j >= (22 + 32*y_crdnt) && j < (24 + 32*y_crdnt)) {
+				PUT_TO_FSL((i-1), 0x00022222);
+				PUT_TO_FSL((i+0), 0x22222222);
+				PUT_TO_FSL((i+1), 0x22222000);
+			}
+			else if (j >= (24 + 32*y_crdnt) && j < (26 + 32*y_crdnt)) {
+				PUT_TO_FSL((i-1), 0x22222222);
+				PUT_TO_FSL((i+0), 0x22222222);
+				PUT_TO_FSL((i+1), 0x22222222);
+			}
+			else if (j >= (26 + 32*y_crdnt) && j < (28 + 32*y_crdnt)) {
+				PUT_TO_FSL((i-1), 0x22002222);
+				PUT_TO_FSL((i+0), 0x22222222);
+				PUT_TO_FSL((i+1), 0x22220022);
+			}
+			else if (j >= (28 + 32*y_crdnt) && j < (30 + 32*y_crdnt)) {
+				PUT_TO_FSL((i-1), 0x22002200);
+				PUT_TO_FSL((i+1), 0x00220022);
+			}
+			else {
+				PUT_TO_FSL((i-1), 0x00000022);
+				PUT_TO_FSL((i+0), 0x22000022);
+				PUT_TO_FSL((i+1), 0x22000000);
+			}
+		}
+	}
+	else
+	{
+		for (j = 16 + 32*y_crdnt; j < 32 + 32*y_crdnt; j++)
+		{
+			i = j*(640/8) + k;
+			if (j >= (16 + 32*y_crdnt) && j < (18 + 32*y_crdnt)) {
+				PUT_TO_FSL((i-1), 0x00000220);
+				PUT_TO_FSL((i+1), 0x02200000);
+			}
+			else if (j >= (18 + 32*y_crdnt) && j < (20 + 32*y_crdnt)) {
+				PUT_TO_FSL((i-1), 0x22000002);
+				PUT_TO_FSL((i+0), 0x20000002);
+				PUT_TO_FSL((i+1), 0x20000022);
+			}
+			else if (j >= (20 + 32*y_crdnt) && j < (22 + 32*y_crdnt)) {
+				PUT_TO_FSL((i-1), 0x22002222);
+				PUT_TO_FSL((i+0), 0x22222222);
+				PUT_TO_FSL((i+1), 0x22220022);
+			}
+			else if (j >= (22 + 32*y_crdnt) && j < (24 + 32*y_crdnt)) {
+				PUT_TO_FSL((i-1), 0x22222222);
+				PUT_TO_FSL((i+0), 0x22222222);
+				PUT_TO_FSL((i+1), 0x22222222);
+			}
+			else if (j >= (24 + 32*y_crdnt) && j < (26 + 32*y_crdnt)) {
+				PUT_TO_FSL((i-1), 0x22222222);
+				PUT_TO_FSL((i+0), 0x22222222);
+				PUT_TO_FSL((i+1), 0x22222222);
+			}
+			else if (j >= (26 + 32*y_crdnt) && j < (28 + 32*y_crdnt)) {
+				PUT_TO_FSL((i-1), 0x00222222);
+				PUT_TO_FSL((i+0), 0x22222222);
+				PUT_TO_FSL((i+1), 0x22222200);
+			}
+			else if (j >= (28 + 32*y_crdnt) && j < (30 + 32*y_crdnt)) {
+				PUT_TO_FSL((i-1), 0x00000220);
+				//PUT_TO_FSL((i+0), 0x00000000);
+				PUT_TO_FSL((i+1), 0x02200000);
+			}
+			else {
+				PUT_TO_FSL((i-1), 0x00022000);
+				//PUT_TO_FSL((i+0), 0x00000000);
+				PUT_TO_FSL((i+1), 0x00022000);
+			}
+		}
 	}
 }

@@ -66,8 +66,13 @@ Xint8 projectile_hit_invader(int i, int j)
 
 			for(n = 0; n < 2000; n++)
 			{
-				draw_square(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, i, j);
-				erase_square(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, i, j);
+				draw_red(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, i, j, 0);
+				draw_red(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, i, j, 0);
+
+				erase_X(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, i, j);
+
+				draw_X(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, i, j);
+				erase_X(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, i, j);
 			}
 
 			xil_printf("\nPROJECTILE HIT INVADER\n\r");
