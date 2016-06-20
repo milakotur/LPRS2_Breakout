@@ -132,11 +132,11 @@ entity user_logic is
     -- ADD USER PORTS ABOVE THIS LINE ------------------
 	
     -- Direct Write FSL Signals
-	FSL_Clk	: in	std_logic;
-	FSL_Rst	: in	std_logic;
-	FSL_S_Clk	: in	std_logic;
-	FSL_S_Read	: out	std_logic;
-	FSL_S_Data	: in	std_logic_vector(0 to 31);
+	FSL_Clk			: in	std_logic;
+	FSL_Rst			: in	std_logic;
+	FSL_S_Clk		: in	std_logic;
+	FSL_S_Read		: out	std_logic;
+	FSL_S_Data		: in	std_logic_vector(0 to 31);
 	FSL_S_Control	: in	std_logic;
 	FSL_S_Exists	: in	std_logic;
 
@@ -380,15 +380,16 @@ architecture IMP of user_logic is
   
   type state_type is (ADDR, DATA);
   signal current_s, next_s: state_type;
-  signal fsl_pixel_clk           : std_logic;
-  signal fsl_pixel_addr       : std_logic_vector(GRAPH_MEM_ADDR_WIDTH-1 downto 0);
-  signal fsl_pixel_value         : std_logic_vector(GRAPH_MEM_DATA_WIDTH-1 downto 0);
-  signal fsl_pixel_value2         : std_logic_vector(GRAPH_MEM_DATA_WIDTH-1 downto 0);
-  signal fsl_pixel_we            : std_logic;
-  signal fsl_pixel_addr_reg_we              : std_logic;
-  signal fsl_data : std_logic_vector(31 downto 0);
   
-  signal fsl_pixel_addr_reg				 : std_logic_vector(GRAPH_MEM_ADDR_WIDTH-1 downto 0);
+  signal fsl_pixel_clk			: std_logic;
+  signal fsl_pixel_addr			: std_logic_vector(GRAPH_MEM_ADDR_WIDTH-1 downto 0);
+  signal fsl_pixel_value        : std_logic_vector(GRAPH_MEM_DATA_WIDTH-1 downto 0);
+  signal fsl_pixel_value2       : std_logic_vector(GRAPH_MEM_DATA_WIDTH-1 downto 0);
+  signal fsl_pixel_we           : std_logic;
+  signal fsl_pixel_addr_reg_we  : std_logic;
+  signal fsl_data 				: std_logic_vector(31 downto 0);
+  
+  signal fsl_pixel_addr_reg		: std_logic_vector(GRAPH_MEM_ADDR_WIDTH-1 downto 0);
   
   
   
@@ -696,13 +697,13 @@ begin
 	end process;
 	
 	fsl_data <= FSL_S_Data;
+	
 	process(FSL_Clk, FSL_Rst) begin
 		if(FSL_Rst = '1') then
 			fsl_pixel_addr_reg <= (others=>'0');
 		elsif(rising_edge(FSL_Clk)) then
 			if(fsl_pixel_addr_reg_we = '1') then
 				fsl_pixel_addr_reg <= fsl_data(GRAPH_MEM_ADDR_WIDTH-1 downto 0);
-				--fsl_pixel_addr_reg <= fsl_pixel_addr_reg + 1;
 			end if;
 		end if;
 	end process;
@@ -710,16 +711,5 @@ begin
 	fsl_pixel_clk <= FSL_Clk;
 	fsl_pixel_addr <= fsl_pixel_addr_reg;
 	fsl_pixel_value <= fsl_data;
-	
-
-	-- fsl_pixel_clk <= FSL_Clk;
-	-- process(FSL_Clk) begin
-		-- if (rising_edge(FSL_Clk)) then
-			-- fsl_pixel_addr <= fsl_pixel_addr + 1;
-			-- fsl_pixel_value2 <= FSL_S_Data;
-		-- end if;
-	-- end process;
-	-- fsl_pixel_value <= fsl_pixel_value2(31 downto 4) & x"1";
-	-- fsl_pixel_we <= '1';
 	
 end IMP;
