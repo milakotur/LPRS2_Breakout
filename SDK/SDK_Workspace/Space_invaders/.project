@@ -3,6 +3,7 @@
 	<name>Space_invaders</name>
 	<comment></comment>
 	<projects>
+		<project>breakout_bsp_0</project>
 		<project>standalone_bsp_0</project>
 		<project>Space_invaders_bsp</project>
 	</projects>
