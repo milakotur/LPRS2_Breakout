@@ -195,9 +195,9 @@ int main()
 		set_cursor(8115);
 		print_string(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, "PRESS KEY DOWN TO START", strlen("PRESS KEY DOWN TO START"));
 
-		while(input != 30)	//wait for input from user
+		while(input & 0x01)	//wait for input from user
 		{
-			input = VGA_PERIPH_MEM_mReadMemory(XPAR_MY_PERIPHERAL_0_BASEADDR);
+			input = Xil_In32(XPAR_MY_PERIPHERAL_0_BASEADDR);
 			seed++;
 		}
 		srand(seed);
