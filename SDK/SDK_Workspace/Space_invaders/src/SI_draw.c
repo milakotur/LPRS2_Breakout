@@ -27,7 +27,7 @@ void draw_invaderX(Xuint32 BaseAddress, Xuint8 x_crdnt, Xuint8 y_crdnt, Xuint8 t
 	int i, j, k;
 	k = x_crdnt;
 
-	if(type == 1)
+	if(1)
 	{
 		for (j = 16 + 32*y_crdnt; j < 32 + 32*y_crdnt; j++)
 		{
@@ -71,53 +71,6 @@ void draw_invaderX(Xuint32 BaseAddress, Xuint8 x_crdnt, Xuint8 y_crdnt, Xuint8 t
 				PUT_TO_FSL((i-1), 0x00000011);
 				PUT_TO_FSL((i+0), 0x11000011);
 				PUT_TO_FSL((i+1), 0x11000000);
-			}
-		}
-	}
-	else
-	{
-		for (j = 16 + 32*y_crdnt; j < 32 + 32*y_crdnt; j++)
-		{
-			i = j*(640/8) + k;
-			if (j >= (16 + 32*y_crdnt) && j < (18 + 32*y_crdnt)) {
-				PUT_TO_FSL((i-1), 0x00000110);
-				//PUT_TO_FSL((i+0), 0x00000000);
-				PUT_TO_FSL((i+1), 0x01100000);
-			}
-			else if (j >= (18 + 32*y_crdnt) && j < (20 + 32*y_crdnt)) {
-				PUT_TO_FSL((i-1), 0x11000001);
-				PUT_TO_FSL((i+0), 0x10000001);
-				PUT_TO_FSL((i+1), 0x10000011);
-			}
-			else if (j >= (20 + 32*y_crdnt) && j < (22 + 32*y_crdnt)) {
-				PUT_TO_FSL((i-1), 0x11001111);
-				PUT_TO_FSL((i+0), 0x11111111);
-				PUT_TO_FSL((i+1), 0x11110011);
-			}
-			else if (j >= (22 + 32*y_crdnt) && j < (24 + 32*y_crdnt)) {
-				PUT_TO_FSL((i-1), 0x11111112);
-				PUT_TO_FSL((i+0), 0x21111112);
-				PUT_TO_FSL((i+1), 0x21111111);
-			}
-			else if (j >= (24 + 32*y_crdnt) && j < (26 + 32*y_crdnt)) {
-				PUT_TO_FSL((i-1), 0x11111111);
-				PUT_TO_FSL((i+0), 0x11111111);
-				PUT_TO_FSL((i+1), 0x11111111);
-			}
-			else if (j >= (26 + 32*y_crdnt) && j < (28 + 32*y_crdnt)) {
-				PUT_TO_FSL((i-1), 0x00111111);
-				PUT_TO_FSL((i+0), 0x11111111);
-				PUT_TO_FSL((i+1), 0x11111100);
-			}
-			else if (j >= (28 + 32*y_crdnt) && j < (30 + 32*y_crdnt)) {
-				PUT_TO_FSL((i-1), 0x00000110);
-				//PUT_TO_FSL((i+0), 0x00000000);
-				PUT_TO_FSL((i+1), 0x01100000);
-			}
-			else {
-				PUT_TO_FSL((i-1), 0x00011000);
-				//PUT_TO_FSL((i+0), 0x00000000);
-				PUT_TO_FSL((i+1), 0x00011000);
 			}
 		}
 	}
@@ -174,111 +127,12 @@ void draw_invader_2(Xuint32 BaseAddress, Xuint8 x_crdnt, Xuint8 y_crdnt)
 	}
 }
 
-void draw_invaderY(Xuint32 BaseAddress, Xuint8 x_crdnt, Xuint8 y_crdnt, Xuint8 type)
-{
-	int i, j, k;
-	k = x_crdnt;
 
-	if(type == 1)
-	{
-		for (j = 16 + 32*y_crdnt; j < 32 + 32*y_crdnt; j++)
-		{
-			i = j*(640/8) + k;
-			if (j >= (16 + 32*y_crdnt) && j < (18 + 32*y_crdnt)) {
-				PUT_TO_FSL(i-1,0x00000000);
-				PUT_TO_FSL(i+0,0x11111111);
-				PUT_TO_FSL(i+1,0x00000000);
-			}
-			else if (j >= (18 + 32*y_crdnt) && j < (20 + 32*y_crdnt)) {
-				PUT_TO_FSL(i-1,0x00000011);
-				PUT_TO_FSL((i+0), 0x11111111);
-				PUT_TO_FSL((i+1), 0x11000000);
-			}
-			else if (j >= (20 + 32*y_crdnt) && j < (22 + 32*y_crdnt)) {
-				PUT_TO_FSL((i-1), 0x00001111);
-				PUT_TO_FSL((i+0), 0x11111111);
-				PUT_TO_FSL((i+1), 0x11110000);
-			}
-			else if (j >= (22 + 32*y_crdnt) && j < (24 + 32*y_crdnt)) {
-				PUT_TO_FSL((i-1), 0x00111100);
-				PUT_TO_FSL((i+0), 0x11111111);
-				PUT_TO_FSL((i+1), 0x00111100);
-			}
-			else if (j >= (24 + 32*y_crdnt) && j < (26 + 32*y_crdnt)) {
-				PUT_TO_FSL((i-1), 0x11111111);
-				PUT_TO_FSL((i+0), 0x11111111);
-				PUT_TO_FSL((i+1), 0x11111111);
-			}
-			else if (j >= (26 + 32*y_crdnt) && j < (28 + 32*y_crdnt)) {
-				PUT_TO_FSL((i-1), 0x11111111);
-				PUT_TO_FSL((i+0), 0x11100111);
-				PUT_TO_FSL((i+1), 0x11111111);
-			}
-			else if (j >= (28 + 32*y_crdnt) && j < (30 + 32*y_crdnt)) {
-				PUT_TO_FSL((i-1), 0x00000011);
-				PUT_TO_FSL((i+0), 0x00111100);
-				PUT_TO_FSL((i+1), 0x11000000);
-			}
-			else {
-				PUT_TO_FSL((i-1), 0x00011111);
-				PUT_TO_FSL((i+0), 0x10000001);
-				PUT_TO_FSL((i+1), 0x11111000);
-			}
-		}
-	}
-	else
-	{
-		for (j = 16 + 32*y_crdnt; j < 32 + 32*y_crdnt; j++)
-		{
-			i = j*(640/8) + k;
-			if (j >= (16 + 32*y_crdnt) && j < (18 + 32*y_crdnt)) {
-				PUT_TO_FSL(i-1,0x02200000);
-				PUT_TO_FSL(i+0,0x11111111);
-				PUT_TO_FSL(i+1,0x00000220);
-			}
-			else if (j >= (18 + 32*y_crdnt) && j < (20 + 32*y_crdnt)) {
-				PUT_TO_FSL(i-1,0x00220011);
-				PUT_TO_FSL((i+0), 0x11111111);
-				PUT_TO_FSL((i+1), 0x11002200);
-			}
-			else if (j >= (20 + 32*y_crdnt) && j < (22 + 32*y_crdnt)) {
-				PUT_TO_FSL((i-1), 0x00001111);
-				PUT_TO_FSL((i+0), 0x11111111);
-				PUT_TO_FSL((i+1), 0x11110000);
-			}
-			else if (j >= (22 + 32*y_crdnt) && j < (24 + 32*y_crdnt)) {
-				PUT_TO_FSL((i-1), 0x00111121);
-				PUT_TO_FSL((i+0), 0x11111111);
-				PUT_TO_FSL((i+1), 0x12111100);
-			}
-			else if (j >= (24 + 32*y_crdnt) && j < (26 + 32*y_crdnt)) {
-				PUT_TO_FSL((i-1), 0x11111122);
-				PUT_TO_FSL((i+0), 0x11111111);
-				PUT_TO_FSL((i+1), 0x22111111);
-			}
-			else if (j >= (26 + 32*y_crdnt) && j < (28 + 32*y_crdnt)) {
-				PUT_TO_FSL((i-1), 0x11111111);
-				PUT_TO_FSL((i+0), 0x11000011);
-				PUT_TO_FSL((i+1), 0x11111111);
-			}
-			else if (j >= (28 + 32*y_crdnt) && j < (30 + 32*y_crdnt)) {
-				PUT_TO_FSL((i-1), 0x00000011);
-				PUT_TO_FSL((i+0), 0x00111100);
-				PUT_TO_FSL((i+1), 0x11000000);
-			}
-			else {
-				PUT_TO_FSL((i-1), 0x00011111);
-				PUT_TO_FSL((i+0), 0x10000001);
-				PUT_TO_FSL((i+1), 0x11111000);
-			}
-		}
-	}
-}
 
 void draw_invader(Xuint32 BaseAddress, Xuint8 x_crdnt, Xuint8 y_crdnt, Xuint8 type)
 {
 	if(level%2 == 0)
-		draw_invaderY(BaseAddress, x_crdnt, y_crdnt, type);
+		draw_invaderX(BaseAddress, x_crdnt, y_crdnt, type);
 	else
 		draw_invaderX(BaseAddress, x_crdnt, y_crdnt, type);
 }
