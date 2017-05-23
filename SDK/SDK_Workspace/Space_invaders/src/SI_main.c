@@ -320,14 +320,14 @@ int main()
 				if(projectil_flag)	//time to move projectiles
 				{
 					move_projectile_from_ship();
-					move_projectile_from_invader();
+					//move_projectile_from_invader();
 					projectil_flag = 0;
 				}
 
 				if(invader_shoot_flag)
 				{
 					invader_x = rand()%80;
-					shoot_projectile_from_invader(invader_x, row);
+					//shoot_projectile_from_invader(invader_x, row);
 					invader_shoot_flag = 0;
 				}
 
@@ -338,10 +338,10 @@ int main()
 						if(invader_dir_chng[i] == DOWN)	//time to move rows down?
 						{
 							invader_dir_chng[i]++;
-							move_invaders_down(row, i);
+							//move_invaders_down(row, i);
 						}
 						else							//if not, move rows left/right
-							move_invaders_row(row, invader_dir, invader_dir_chng, i);
+							//move_invaders_row(row, invader_dir, invader_dir_chng, i);
 
 						flag_row[i] = 0;
 					}

@@ -332,7 +332,7 @@ void draw_red(Xuint32 BaseAddress, Xuint8 x_crdnt, Xuint8 y_crdnt, Xuint8 type)
 				PUT_TO_FSL(i+1,0x00000000);
 			}
 			else if (j >= (18 + 32*y_crdnt) && j < (20 + 32*y_crdnt)) {
-				PUT_TO_FSL(i-1,0x00000002);
+				PUT_TO_FSL(i-1,0x00000000);
 				PUT_TO_FSL((i+0), 0x00000000);
 				PUT_TO_FSL((i+1), 0x00000000);
 			}
