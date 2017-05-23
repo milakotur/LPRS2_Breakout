@@ -234,7 +234,7 @@ int main()
 		{
 			print_level++;
 
-			if(level < 5)
+			if(level < 4)
 			{
 				level++;
 			}

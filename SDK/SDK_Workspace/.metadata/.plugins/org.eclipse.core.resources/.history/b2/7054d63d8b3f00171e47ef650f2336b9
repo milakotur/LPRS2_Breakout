@@ -30,7 +30,7 @@
 
 #define INVADER_INIT_ROW 1
 #define INIT_ROWS 2
-#define INIT_COLS 15 //9
+#define INIT_COLS 15
 #define INIT_NUM INIT_ROWS*INIT_COLS
 
 #define SHIP_Y 14
