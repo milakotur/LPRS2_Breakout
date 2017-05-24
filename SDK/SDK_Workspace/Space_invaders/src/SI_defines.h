@@ -34,8 +34,8 @@
 #define INIT_NUM INIT_ROWS*INIT_COLS
 
 #define SHIP_Y 14
-#define MIN_SHIP_X 1
-#define MAX_SHIP_X 78
+#define MIN_SHIP_X 8
+#define MAX_SHIP_X 72
 
 #define MAX_PROJECTILES_Y 15
 #define MAX_PROJECTILES_X 80

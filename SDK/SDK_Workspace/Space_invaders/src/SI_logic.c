@@ -64,16 +64,7 @@ Xint8 projectile_hit_invader(int i, int j)
 			invaders_num--;
 			projectiles_of_ship_num[i]--;
 
-			for(n = 0; n < 2000; n++)
-			{
-				draw_red(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, i, j, 0);
-				draw_red(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, i, j, 0);
 
-				erase_X(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, i, j);
-
-				draw_X(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, i, j);
-				erase_X(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, i, j);
-			}
 
 			xil_printf("\nPROJECTILE HIT INVADER\n\r");
 			return 1;
@@ -82,141 +73,18 @@ Xint8 projectile_hit_invader(int i, int j)
 	return 0;
 }
 
-Xint8 projectile_hit_projectile(int i, int j)
-{
-	if(projectiles_map[i][j])
-	{
-		projectiles_map[i][j] = 0;
-		erase_projectile(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, i, j);
-		projectiles_of_invaders_num[i]--;
-		projectiles_of_ship_num[i]--;
-		return 1;
-	}
-	return 0;
-}
-
-void move_projectile_from_ship()
-{
-	int i, j, n;
-
-	for(i = 1; i < MAX_PROJECTILES_X; i++)
-	{
-		n = 0;
-		j = 0;
-
-		while(n < projectiles_of_ship_num[i])
-		{
-			if(projectiles_map[i][j] == 1)
-			{
-				erase_projectile(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, i, j);
-				projectiles_map[i][j] = 0;
-
-				if(j == 0)		//New position will be out of screen
-					projectiles_of_ship_num[i]--;
-				else			//New position is not out of screen
-				{
-					if(!projectile_hit_invader(i, j-1) && !projectile_hit_projectile(i, j-1))
-					{
-						projectiles_map[i][j-1] = 1;
-						draw_projectile(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, i, (j-1));
-						n++;
-					}
-				}
-			}
-
-			j++;
-		}
-	}
-}
-
-Xint8 projectile_hit_ship(int i, int j)
-{
-	int n;
-	if(SHIP_Y == j)
-	{
-		for(n = -1; n < 2; n++)
-		{
-			if(spaceship_x+n == i)
-			{
-				projectiles_of_invaders_num[i]--;
-				xil_printf("\nPROJECTILE HIT SHIP\n\r");
-				return 1;
-			}
-		}
-	}
-
-	return 0;
-}
 
 
 
-Xint8 invader_hit_projectile(int i, int j)
-{
-	int n;
-
-	if(projectiles_map[i][j] == 1)
-	{
-		projectiles_map[i][j] = 0;
-		projectiles_of_ship_num[i]--;
-		invaders_num--;
-		erase_projectile(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, i, j);
-
-		for(n = 0; n < 500; n++)
-		{
-			draw_square(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, i, j);
-			erase_square(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, i, j);
-		}
-
-		xil_printf("\nINVADER HIT PROJECTILE\n\r");
-		return 1;
-	}
-	else
-		return 0;
-}
+/*
 
 
-Xint8 invader_hit_projectile_down(int i, int j)
-{
-	int n;
-	/* Check if projectile hit left, center or right part of invader */
-	for(n = -1; n < 2; n++)
-	{
-		if(projectiles_map[i+n][j] == 1)
-		{
-			projectiles_map[i+n][j] = 0;
-			projectiles_of_ship_num[i+n]--;
-			invaders_num--;
-			erase_projectile(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, i+n, j);
-
-			for(n = 0; n < 500; n++)
-			{
-				draw_square(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, i, j);
-				erase_square(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, i, j);
-			}
-
-			xil_printf("\nINVADER HIT PROJECTILE DOWN! projectiles_num: %d\n\r", projectiles_of_ship_num[i+n]);
-			return 1;
-		}
-	}
-	return 0;
-}
-
-
-
-/* Draw projectile at current position of spaceship  */
-void shoot_projectile_from_ship(Xuint8 spaceship_x)
-{
-    if(projectiles_map[spaceship_x][SHIP_Y-1] != 1)
-    {
-    	projectiles_of_ship_num[spaceship_x]++;
-
-    	if(!projectile_hit_invader(spaceship_x, SHIP_Y-1) && !projectile_hit_projectile(spaceship_x, SHIP_Y-1))
     	{
-			draw_projectile(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, spaceship_x, SHIP_Y - 1);
+			//draw_projectile(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, spaceship_x, SHIP_Y - 1);
 			projectiles_map[spaceship_x][SHIP_Y - 1] = 1;
     	}
     }
-}
+}*/
 
 
 
