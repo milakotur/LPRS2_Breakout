@@ -13,10 +13,10 @@
 void init_colors()
 {
 	/* Define colors */
-	VGA_PERIPH_MEM_mWriteMemory(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR + 0x10, 0x27104f);	//color 0
-	VGA_PERIPH_MEM_mWriteMemory(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR + 0x14, 0x90edac);	//color 1
-	VGA_PERIPH_MEM_mWriteMemory(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR + 0x18, 0xff0000);	//color 2
-	VGA_PERIPH_MEM_mWriteMemory(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR + 0x1C, 0xd02090);	//color 3 siva
+	VGA_PERIPH_MEM_mWriteMemory(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR + 0x10, 0x27104f);	//color 0 teget
+	VGA_PERIPH_MEM_mWriteMemory(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR + 0x14, 0x90edac);	//color 1 zelena
+	VGA_PERIPH_MEM_mWriteMemory(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR + 0x18, 0xff0000);	//color 2 crvena
+	VGA_PERIPH_MEM_mWriteMemory(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR + 0x1C, 0xd02090);	//color 3 roza
 	VGA_PERIPH_MEM_mWriteMemory(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR + 0x20, 0x00ffff);	//color 4
 	VGA_PERIPH_MEM_mWriteMemory(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR + 0x24, 0xff00ff);	//color 5
 	VGA_PERIPH_MEM_mWriteMemory(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR + 0x28, 0xffff00);	//color 6
@@ -159,20 +159,94 @@ void num_to_str(char *s, unsigned long bin, unsigned char n)
 
 int get_angle(int x, int y, int angle)
 {
-	if(y<=410 && x==30 && angle>180)
+	if(y<=410 && y>25 && x==2 && angle>180)
 		return 540-angle;
-	if(y<=410 && x==30 && angle<=180)
+	if(y<=410 && y>25 &&  x==2 && angle<=180)
 		return 180-angle;
-	if(y<=410 && x==52 && angle<90)
+	if(y<=410 && y>25 && x==78 && angle<=90)
 		return 180-angle;
-	if(y<=410 && x==52 && angle>270)
+	if(y<=410 && y>25 && x==78 && angle>270)
 		return 540-angle;
-	if(y==12 && angle<90)
+	if(y==17 && angle<=90)
 		return 360-angle;
-	if(y==12 && angle>90)
+	if(y==17 && angle>90)
 		return 360-angle;
-	return angle;
+	int i,j;
+	y+=6;
+	if((y>=410 && x==2) || (y>418 && x==3) || (y>426 && x==4) || (y>434 && x==5) || (y>442 && x==6) || (y>450 && x==7))
+	{
+		if(angle<270)
+			angle=angle-180;
+		else
+			angle=(angle+45)%360;
+		return angle;
+	}
+	if((y>=410 && x==78) || (y>417 && x==77) || (y>424 && x==76) || (y>431 && x==75) || (y>438 && x==74) || (y>446 && x==73))
+	{
+		if(angle>270)
+			angle=angle-180;
+		else
+			angle=angle+45;
+		return angle;
+	}
+	if(((y>440 && x==6) || (y>443 && x==7) || (y>446 && x==8) || (y>449 && x==9) || (y>452 && x==10) || (y>455 && x==11)) )
+	{
+		angle=80;
+	}
+	if(((y>440 && x==6) || (y>443 && x==7) || (y>446 && x==8) || (y>449 && x==9) || (y>452 && x==10) || (y>455 && x==11)) )
+	{
+		angle=60+rand()%70;
+	}
+	if(((y>440 && x==6) || (y>443 && x==7) || (y>446 && x==8) || (y>449 && x==9) || (y>452 && x==10) || (y>455 && x==11)) )
+	{
+		angle=60+rand()%70;
+	}
+	if(((y>440 && x==6) || (y>443 && x==7) || (y>446 && x==8) || (y>449 && x==9) || (y>452 && x==10) || (y>455 && x==11)) )
+	{
+		angle=60+rand()%70;
+	}
+	if(((y>440 && x==6) || (y>443 && x==7) || (y>446 && x==8) || (y>449 && x==9) || (y>452 && x==10) || (y>455 && x==11)) )
+	{
+		angle=60+rand()%70;
+	}
+	if(((y>440 && x==6) || (y>443 && x==7) || (y>446 && x==8) || (y>449 && x==9) || (y>452 && x==10) || (y>455 && x==11)) )
+	{
+		angle=60+rand()%70;
+	}
+	if(((y>440 && x==6) || (y>443 && x==7) || (y>446 && x==8) || (y>449 && x==9) || (y>452 && x==10) || (y>455 && x==11)) )
+	{
+		angle=60+rand()%70;
+	}
 
+	if(((y>440 && x==75) || (y>443 && x==74) || (y>446 && x==73) || (y>449 && x==72) || (y>452 && x==71) || (y>455 && x==69)) )
+		{
+			angle=100;
+		}
+	if(((y>440 && x==75) || (y>443 && x==74) || (y>446 && x==73) || (y>449 && x==72) || (y>452 && x==71) || (y>455 && x==69)) )
+		{
+			angle=50+rand()%100;
+		}
+	if(((y>440 && x==75) || (y>443 && x==74) || (y>446 && x==73) || (y>449 && x==72) || (y>452 && x==71) || (y>455 && x==69)) )
+		{
+			angle=50+rand()%100;
+		}
+	if(((y>440 && x==75) || (y>443 && x==74) || (y>446 && x==73) || (y>449 && x==72) || (y>452 && x==71) || (y>455 && x==69)) )
+		{
+			angle=50+rand()%100;
+		}
+	if(((y>440 && x==75) || (y>443 && x==74) || (y>446 && x==73) || (y>449 && x==72) || (y>452 && x==71) || (y>455 && x==69)) )
+		{
+			angle=50+rand()%100;
+		}
+	if(((y>440 && x==75) || (y>443 && x==74) || (y>446 && x==73) || (y>449 && x==72) || (y>452 && x==71) || (y>455 && x==69)) )
+		{
+			angle=50+rand()%100;
+		}
+	if(((y>440 && x==75) || (y>443 && x==74) || (y>446 && x==73) || (y>449 && x==72) || (y>452 && x==71) || (y>455 && x==69)) )
+		{
+			angle=50+rand()%100;
+		}
+	return angle;
 }
 
 
@@ -308,9 +382,10 @@ int main()
 			}
 
 			init_draw(row);
-			draw_ball(600, 200, 600, 200);
+
 
 			while(!((invaders_num == 0) || (game_over == 1)))
+
 			{
 				switch(input)
 				{
@@ -329,16 +404,17 @@ int main()
 							{
 								//shoot_projectile_from_ship(spaceship_x);
 								shoot_flag = SHOOT_SPEED;
-								ball_x=32;
-								ball_y=250;
+								ball_x=45;
+								ball_y=190;
 								move_ball=1;
 							}
 							break;
 				}
 
-				if(input != LEFT_JOY && input != RIGHT_JOY ) //STISNUT NEKI JOY
+				if(input != LEFT_JOY && input != RIGHT_JOY  ) //STISNUT NEKI JOY
 				{
 					spaceship_speed = 8;
+
 				}
 
 
@@ -348,19 +424,76 @@ int main()
 					spaceship_flag = 0;
 				}
 
-				if(projectil_flag)	//time to move projectiles
+				if(projectil_flag && move_ball)	//time to move projectiles
 				{
+					if(ball_angle==0)
+												{
+													ball_x++;
+												}
+												if(ball_angle==90)
+												{
+													ball_y--;
+												}
+												if(ball_angle==180)
+												{
+													ball_x--;
+												}
+												if(ball_angle==270)
+												{
+													ball_y++;
+												}
+												if(ball_angle>0 && ball_angle<90)
+												{
+													ball_x++;
+													ball_y=-tan(ball_angle)+ball_y;
+												}
+												if(ball_angle>90 && ball_angle<180)
+												{
+													ball_x--;
+													ball_y=-tan((180-ball_angle))+ball_y;
+												}
+												if(ball_angle>180 && ball_angle<270)
+												{
+													ball_x--;
+													ball_y=ball_y+tan((ball_angle-180));
+												}
+												if(ball_angle>270 && ball_angle<360)
+												{
+													ball_x++;
+													ball_y=ball_y+tan((360-ball_angle));
+												}
+												if(ball_y<17)
+												{
+													ball_y=17;
+													draw_ball(ball_x,ball_y,ball_x_prev,ball_y_prev);
+												}
+												else
+												{
+													draw_ball(ball_x,ball_y,ball_x_prev,ball_y_prev);
+												}
+												ball_angle=get_angle(ball_x,ball_y,ball_angle);
+												if(ball_angle<0) ball_angle+=360;
+												if(ball_angle>360) ball_angle-=360;
+												ball_x_prev=ball_x;
+												if(ball_y>480)
+												{
+													move_ball=0;
+												}
+												ball_y_prev=ball_y;
+												projectil_flag = 0;
+
+
 					//move_projectile_from_ship();
 					//move_projectile_from_invader();
-					projectil_flag = 0;
+
 				}
 
-				if(invader_shoot_flag)
+				/*if(invader_shoot_flag)
 				{
 					invader_x = rand()%80;
 					//shoot_projectile_from_invader(invader_x, row);
 					invader_shoot_flag = 0;
-				}
+				}*/
 
 				for(i = 0; i < INIT_ROWS + level - 1; i++)
 				{
