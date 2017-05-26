@@ -132,6 +132,7 @@ void clear_graphics_screen(Xuint32 BaseAddress)
 
 void draw_ball(int x, int y, int x_prev, int y_prev)
 {
+	//Strahinjinja fja
 	/*int k;
 	int j;
 
