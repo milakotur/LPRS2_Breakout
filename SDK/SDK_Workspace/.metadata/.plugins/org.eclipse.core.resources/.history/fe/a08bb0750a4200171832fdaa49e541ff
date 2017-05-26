@@ -176,33 +176,33 @@ void draw_ball(int x, int y, int x_prev, int y_prev)
 	PUT_TO_FSL(((y_prev+5)*80 + x_prev+1), 0x11111111);
 	PUT_TO_FSL(((y_prev+6)*80 + x_prev+1), 0x11111111);
 
-	PUT_TO_FSL(((y-6)*80 + x), 0x00003333); //gore levo
-	PUT_TO_FSL(((y-5)*80 + x), 0x00333333);
-	PUT_TO_FSL(((y-4)*80 + x), 0x03333333);
+	PUT_TO_FSL(((y-6)*80 + x), 0x11110000);
+	PUT_TO_FSL(((y-5)*80 + x), 0x11333330);
+	PUT_TO_FSL(((y-4)*80 + x), 0x13333333);
 	PUT_TO_FSL(((y-3)*80 + x), 0x33333333);
 	PUT_TO_FSL(((y-2)*80 + x), 0x33333333);
 	PUT_TO_FSL(((y-1)*80 + x), 0x33333333);
 	PUT_TO_FSL((y*80 + x), 0x33333333);
-	PUT_TO_FSL(((y+1)*80 + x), 0x33333333); //dole levo
+	PUT_TO_FSL(((y+1)*80 + x), 0x33333333);
 	PUT_TO_FSL(((y+2)*80 + x), 0x33333333);
 	PUT_TO_FSL(((y+3)*80 + x), 0x33333333);
-	PUT_TO_FSL(((y+4)*80 + x), 0x03333333);
-	PUT_TO_FSL(((y+5)*80 + x), 0x00333333);
-	PUT_TO_FSL(((y+6)*80 + x), 0x00003333);
+	PUT_TO_FSL(((y+4)*80 + x), 0x13333333);
+	PUT_TO_FSL(((y+5)*80 + x), 0x11333333);
+	PUT_TO_FSL(((y+6)*80 + x), 0x11113333);
 
-	PUT_TO_FSL(((y-6)*80 + x+1), 0x33330000); //gore desno
-	PUT_TO_FSL(((y-5)*80 + x+1), 0x33333300);
-	PUT_TO_FSL(((y-4)*80 + x+1), 0x33333330);
+	PUT_TO_FSL(((y-6)*80 + x+1), 0x33331111);
+	PUT_TO_FSL(((y-5)*80 + x+1), 0x33333311);
+	PUT_TO_FSL(((y-4)*80 + x+1), 0x33333331);
 	PUT_TO_FSL(((y-3)*80 + x+1), 0x33333333);
 	PUT_TO_FSL(((y-2)*80 + x+1), 0x33333333);
 	PUT_TO_FSL(((y-1)*80 + x+1), 0x33333333);
 	PUT_TO_FSL((y*80 + x+1), 0x33333333);
-	PUT_TO_FSL(((y+1)*80 + x+1), 0x33333333); //dole desno
+	PUT_TO_FSL(((y+1)*80 + x+1), 0x33333333);
 	PUT_TO_FSL(((y+2)*80 + x+1), 0x33333333);
 	PUT_TO_FSL(((y+3)*80 + x+1), 0x33333333);
-	PUT_TO_FSL(((y+4)*80 + x+1), 0x33333330);
-	PUT_TO_FSL(((y+5)*80 + x+1), 0x33333300);
-	PUT_TO_FSL(((y+6)*80 + x+1), 0x33330000);
+	PUT_TO_FSL(((y+4)*80 + x+1), 0x33333331);
+	PUT_TO_FSL(((y+5)*80 + x+1), 0x33333311);
+	PUT_TO_FSL(((y+6)*80 + x+1), 0x33331111);
 }
 
 

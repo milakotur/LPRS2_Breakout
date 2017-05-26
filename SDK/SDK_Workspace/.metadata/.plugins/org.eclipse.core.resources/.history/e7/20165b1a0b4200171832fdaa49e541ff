@@ -181,7 +181,7 @@ void draw_ball(int x, int y, int x_prev, int y_prev)
 	PUT_TO_FSL(((y-4)*80 + x), 0x03333333);
 	PUT_TO_FSL(((y-3)*80 + x), 0x33333333);
 	PUT_TO_FSL(((y-2)*80 + x), 0x33333333);
-	PUT_TO_FSL(((y-1)*80 + x), 0x33333333);
+	PUT_TO_FSL(((y-1)*80 + x), 0x22222222);
 	PUT_TO_FSL((y*80 + x), 0x33333333);
 	PUT_TO_FSL(((y+1)*80 + x), 0x33333333); //dole levo
 	PUT_TO_FSL(((y+2)*80 + x), 0x33333333);

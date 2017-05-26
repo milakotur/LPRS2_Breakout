@@ -35,7 +35,7 @@
 
 #define SHIP_Y 14
 #define MIN_SHIP_X 8
-#define MAX_SHIP_X 73
+#define MAX_SHIP_X 74
 
 #define MAX_PROJECTILES_Y 15
 #define MAX_PROJECTILES_X 80
