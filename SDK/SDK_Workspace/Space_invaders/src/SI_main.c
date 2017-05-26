@@ -207,6 +207,7 @@ int main()
 
 	clear_text_screen(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR);
 
+
 	while(1)
 	{
 		clear_graphics_screen(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR);
@@ -215,6 +216,7 @@ int main()
 		VGA_PERIPH_MEM_mWriteMemory(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR + 0x04, 0b01);    //text mode
 
 		set_cursor(8115);
+
 		print_string(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, "PRESS KEY DOWN TO START", strlen("PRESS KEY DOWN TO START"));
 
 		while(input & 0x01)	//wait for input from user
@@ -306,6 +308,7 @@ int main()
 			}
 
 			init_draw(row);
+			draw_ball(600, 200, 600, 200);
 
 			while(!((invaders_num == 0) || (game_over == 1)))
 			{
@@ -426,7 +429,6 @@ int main()
 		set_cursor(6543 + 24);
 		num_to_str(str, score + old_score, num_len(score + old_score));
 		print_string(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, str, num_len(score + old_score));
-
 	}
 
     return 0;
