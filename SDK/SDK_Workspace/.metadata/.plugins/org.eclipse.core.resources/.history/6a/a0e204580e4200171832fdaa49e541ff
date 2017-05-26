@@ -88,7 +88,7 @@ Xint8 projectile_hit_invader(int i, int j)
 
 
 
-/*void generate_init_invaders_positions()
+void generate_init_invaders_positions()
 {
 	int j;
 
@@ -117,7 +117,7 @@ Xint8 projectile_hit_invader(int i, int j)
 		invaders_map[105][j+INVADER_INIT_ROW] = 1;
 
 	}
-}*/
+}
 
 void generate_init_blocks_position()
 {
