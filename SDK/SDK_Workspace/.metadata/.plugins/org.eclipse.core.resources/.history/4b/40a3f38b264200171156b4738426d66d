@@ -159,22 +159,20 @@ void num_to_str(char *s, unsigned long bin, unsigned char n)
 
 int get_angle(int x, int y, int angle)
 {
-	if(y<=410 && y>50 && x==2 && angle>180)
+	if(y<=410 && y>25 && x==2 && angle>180)
 		return 540-angle;
-	if(y<=410 && y>50 &&  x==2 && angle<=180)
+	if(y<=410 && y>25 &&  x==2 && angle<=180)
 		return 180-angle;
-	if(y<=410 && y>50 && x==78 && angle<=90)
+	if(y<=410 && y>25 && x==78 && angle<=90)
 		return 180-angle;
-	if(y<=410 && y>50 && x==78 && angle>270)
+	if(y<=410 && y>25 && x==78 && angle>270)
 		return 540-angle;
-	if(y==50 && angle<=90)
+	if(y==17 && angle<=90)
 		return 360-angle;
-	if(y==50 && angle>90)
+	if(y==17 && angle>90)
 		return 360-angle;
 	int i,j;
 	y+=6;
-
-	/*
 	if((y>=410 && x==2) || (y>418 && x==3) || (y>426 && x==4) || (y>434 && x==5) || (y>442 && x==6) || (y>450 && x==7))
 	{
 		if(angle<270)
@@ -247,7 +245,7 @@ int get_angle(int x, int y, int angle)
 	if(((y>440 && x==75) || (y>443 && x==74) || (y>446 && x==73) || (y>449 && x==72) || (y>452 && x==71) || (y>455 && x==69)) )
 		{
 			angle=50+rand()%100;
-		}*/
+		}
 	return angle;
 }
 
