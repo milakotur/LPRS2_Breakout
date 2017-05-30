@@ -51,7 +51,7 @@
 
 #define INVADER_SPEED 40
 #define PROJECTILE_SPEED 12
-#define SHOOT_SPEED 25
+#define SHOOT_SPEED 75
 
 #define INIT_LIVES 3
 

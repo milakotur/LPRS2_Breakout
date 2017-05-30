@@ -132,48 +132,35 @@ void clear_graphics_screen(Xuint32 BaseAddress)
 
 void draw_ball(int x, int y, int x_prev, int y_prev)
 {
-	//Strahinjinja fja
-	/*int k;
-	int j;
-
-	int r = 50; // radius
-	int ox = 100, oy = 100; // origin
-
-	for (k = -r; k < r ; k++)
-	{
-	    int height = (int)sqrt(r * r - k * k);
-
-	    for (j = -height; j < height; j++)
-	    	PUT_TO_FSL(((oy+j)*80 + k + ox), 0x11111111);
-	}*/
 
 
-	PUT_TO_FSL(((y_prev-6)*80 + x_prev), 0x11111111);
-	PUT_TO_FSL(((y_prev-5)*80 + x_prev), 0x11111111);
-	PUT_TO_FSL(((y_prev-4)*80 + x_prev), 0x11111111);
-	PUT_TO_FSL(((y_prev-3)*80 + x_prev), 0x11111111);
-	PUT_TO_FSL(((y_prev-2)*80 + x_prev), 0x11111111);
-	PUT_TO_FSL(((y_prev-1)*80 + x_prev), 0x11111111);
+
+	PUT_TO_FSL(((y_prev-6)*80 + x_prev),  0x11111111);
+	PUT_TO_FSL(((y_prev-5)*80 + x_prev),  0x00000000);
+	PUT_TO_FSL(((y_prev-4)*80 + x_prev),  0x00000000);
+	PUT_TO_FSL(((y_prev-3)*80 + x_prev),  0x00000000);
+	PUT_TO_FSL(((y_prev-2)*80 + x_prev),  0x11111111);
+	PUT_TO_FSL(((y_prev-1)*80 + x_prev),  0x00000000);
 	PUT_TO_FSL((y_prev*80 + x_prev), 0x11111111);
-	PUT_TO_FSL(((y_prev+1)*80 + x_prev), 0x11111111);
+	PUT_TO_FSL(((y_prev+1)*80 + x_prev), 0x00000000);
 	PUT_TO_FSL(((y_prev+2)*80 + x_prev), 0x11111111);
-	PUT_TO_FSL(((y_prev+3)*80 + x_prev), 0x11111111);
+	PUT_TO_FSL(((y_prev+3)*80 + x_prev), 0x00000000);
 	PUT_TO_FSL(((y_prev+4)*80 + x_prev), 0x11111111);
-	PUT_TO_FSL(((y_prev+5)*80 + x_prev), 0x11111111);
-	PUT_TO_FSL(((y_prev+6)*80 + x_prev), 0x11111111);
+	PUT_TO_FSL(((y_prev+5)*80 + x_prev), 0x00000000);
+	PUT_TO_FSL(((y_prev+6)*80 + x_prev), 0x00000000);
 
 	PUT_TO_FSL(((y_prev-6)*80 + x_prev+1), 0x11111111);
-	PUT_TO_FSL(((y_prev-5)*80 + x_prev+1), 0x11111111);
-	PUT_TO_FSL(((y_prev-4)*80 + x_prev+1), 0x11111111);
+	PUT_TO_FSL(((y_prev-5)*80 + x_prev+1), 0x00000000);
+	PUT_TO_FSL(((y_prev-4)*80 + x_prev+1), 0x00000000);
 	PUT_TO_FSL(((y_prev-3)*80 + x_prev+1), 0x11111111);
-	PUT_TO_FSL(((y_prev-2)*80 + x_prev+1), 0x11111111);
-	PUT_TO_FSL(((y_prev-1)*80 + x_prev+1), 0x11111111);
-	PUT_TO_FSL((y_prev*80 + x_prev+1), 0x11111111);
+	PUT_TO_FSL(((y_prev-2)*80 + x_prev+1), 0x00000000);
+	PUT_TO_FSL(((y_prev-1)*80 + x_prev+1), 0x00000000);
+	PUT_TO_FSL((y_prev*80 + x_prev+1), 0x00000000);
 	PUT_TO_FSL(((y_prev+1)*80 + x_prev+1), 0x11111111);
-	PUT_TO_FSL(((y_prev+2)*80 + x_prev+1), 0x11111111);
-	PUT_TO_FSL(((y_prev+3)*80 + x_prev+1), 0x11111111);
+	PUT_TO_FSL(((y_prev+2)*80 + x_prev+1), 0x00000000);
+	PUT_TO_FSL(((y_prev+3)*80 + x_prev+1), 0x00000000);
 	PUT_TO_FSL(((y_prev+4)*80 + x_prev+1), 0x11111111);
-	PUT_TO_FSL(((y_prev+5)*80 + x_prev+1), 0x11111111);
+	PUT_TO_FSL(((y_prev+5)*80 + x_prev+1), 0x00000000);
 	PUT_TO_FSL(((y_prev+6)*80 + x_prev+1), 0x11111111);
 
 	PUT_TO_FSL(((y-6)*80 + x), 0x00003333); //gore levo
