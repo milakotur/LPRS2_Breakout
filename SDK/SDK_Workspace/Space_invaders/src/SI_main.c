@@ -83,8 +83,7 @@ void init_draw(Xuint8* row)
 {
 	int i, j;
 
-	//if(level - 1 == 0)
-		draw_ship(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, spaceship_x, SHIP_Y);
+	draw_ship(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, spaceship_x, SHIP_Y);
 
 	for(i = 0; i < INIT_ROWS + level - 1; i++)
 	{
@@ -92,10 +91,11 @@ void init_draw(Xuint8* row)
 		{
 			if(invaders_map[j][row[i]])
 			{
-				draw_invader(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, j, row[i], invaders_map[j][row[i]]);
+				draw_brick(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, j, row[i], invaders_map[j][row[i]]);
 			}
 		}
 	}
+
 }
 
 void clear_text_screen(Xuint32 BaseAddress)
@@ -159,6 +159,8 @@ void num_to_str(char *s, unsigned long bin, unsigned char n)
 
 int get_angle(int x, int y, int angle)
 {
+	int i, j;
+
 	if(y<=480 && y>50 && x==2 && angle>180)
 		return 540-angle;
 	if(y<=480 && y>50 &&  x==2 && angle<=180)
@@ -175,81 +177,10 @@ int get_angle(int x, int y, int angle)
 		return 360-angle;
 
 
-
-	/*if((y==410 &&  (x<=(spaceship_x+7)) && (x>=(spaceship_x-7))))
-	{
-		angle=50+rand()%100;
-	}*/
-/*
-	if((y>=410 && x==78) || (y>417 && x==77) || (y>424 && x==76) || (y>431 && x==75) || (y>438 && x==74) || (y>446 && x==73))
-	{
-		if(angle>270)
-			angle=angle-180;
-		else
-			angle=angle+45;
-		return angle;
-	}
-	if(((y>440 && x==6) || (y>443 && x==7) || (y>446 && x==8) || (y>449 && x==9) || (y>452 && x==10) || (y>455 && x==11)) )
-	{
-		angle=80;
-	}
-	if(((y>440 && x==6) || (y>443 && x==7) || (y>446 && x==8) || (y>449 && x==9) || (y>452 && x==10) || (y>455 && x==11)) )
-	{
-		angle=60+rand()%70;
-	}
-	if(((y>440 && x==6) || (y>443 && x==7) || (y>446 && x==8) || (y>449 && x==9) || (y>452 && x==10) || (y>455 && x==11)) )
-	{
-		angle=60+rand()%70;
-	}
-	if(((y>440 && x==6) || (y>443 && x==7) || (y>446 && x==8) || (y>449 && x==9) || (y>452 && x==10) || (y>455 && x==11)) )
-	{
-		angle=60+rand()%70;
-	}
-	if(((y>440 && x==6) || (y>443 && x==7) || (y>446 && x==8) || (y>449 && x==9) || (y>452 && x==10) || (y>455 && x==11)) )
-	{
-		angle=60+rand()%70;
-	}
-	if(((y>440 && x==6) || (y>443 && x==7) || (y>446 && x==8) || (y>449 && x==9) || (y>452 && x==10) || (y>455 && x==11)) )
-	{
-		angle=60+rand()%70;
-	}
-	if(((y>440 && x==6) || (y>443 && x==7) || (y>446 && x==8) || (y>449 && x==9) || (y>452 && x==10) || (y>455 && x==11)) )
-	{
-		angle=60+rand()%70;
-	}
-
-	if(((y>440 && x==75) || (y>443 && x==74) || (y>446 && x==73) || (y>449 && x==72) || (y>452 && x==71) || (y>455 && x==69)) )
-		{
-			angle=100;
-		}
-	if(((y>440 && x==75) || (y>443 && x==74) || (y>446 && x==73) || (y>449 && x==72) || (y>452 && x==71) || (y>455 && x==69)) )
-		{
-			angle=50+rand()%100;
-		}
-	if(((y>440 && x==75) || (y>443 && x==74) || (y>446 && x==73) || (y>449 && x==72) || (y>452 && x==71) || (y>455 && x==69)) )
-		{
-			angle=50+rand()%100;
-		}
-	if(((y>440 && x==75) || (y>443 && x==74) || (y>446 && x==73) || (y>449 && x==72) || (y>452 && x==71) || (y>455 && x==69)) )
-		{
-
-		}
-	if(((y>440 && x==75) || (y>443 && x==74) || (y>446 && x==73) || (y>449 && x==72) || (y>452 && x==71) || (y>455 && x==69)) )
-		{
-			angle=50+rand()%100;
-		}
-	if(((y>440 && x==75) || (y>443 && x==74) || (y>446 && x==73) || (y>449 && x==72) || (y>452 && x==71) || (y>455 && x==69)) )
-		{
-			angle=50+rand()%100;
-		}
-	if(((y>440 && x==75) || (y>443 && x==74) || (y>446 && x==73) || (y>449 && x==72) || (y>452 && x==71) || (y>455 && x==69)) )
-		{
-			angle=50+rand()%100;
-		}*/
 	return angle;
+
+
 }
-
-
 
 
 int main()
@@ -402,8 +333,6 @@ int main()
 					case MIDDLE_JOY:
 							if(shoot_flag == 0)
 							{
-								//shoot_projectile_from_ship(spaceship_x);
-								shoot_flag = SHOOT_SPEED;
 								ball_x=45;
 								ball_y=190;
 								move_ball=1;
@@ -424,7 +353,7 @@ int main()
 					spaceship_flag = 0;
 				}
 
-				if(projectil_flag && move_ball)	//time to move projectiles
+				if(projectil_flag && move_ball)
 				{
 					if(ball_angle==0)
 												{
@@ -482,34 +411,10 @@ int main()
 												ball_y_prev=ball_y;
 												projectil_flag = 0;
 
-
-					//move_projectile_from_ship();
-					//move_projectile_from_invader();
-
 				}
 
-				/*if(invader_shoot_flag)
-				{
-					invader_x = rand()%80;
-					//shoot_projectile_from_invader(invader_x, row);
-					invader_shoot_flag = 0;
-				}*/
 
-				for(i = 0; i < INIT_ROWS + level - 1; i++)
-				{
-					if(flag_row[i])	//time to move this row of invaders?
-					{
-						if(invader_dir_chng[i] == DOWN)	//time to move rows down?
-						{
-							invader_dir_chng[i]++;
-							//move_invaders_down(row, i);
-						}
-						else							//if not, move rows left/right
-							//move_invaders_row(row, invader_dir, invader_dir_chng, i);
 
-						flag_row[i] = 0;
-					}
-				}
 
 				if(old_invaders_num != invaders_num)
 				{
