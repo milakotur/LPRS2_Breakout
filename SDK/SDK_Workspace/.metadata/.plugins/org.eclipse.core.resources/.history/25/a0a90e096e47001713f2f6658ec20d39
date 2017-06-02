@@ -197,13 +197,11 @@ void sudaranje(int ball_x, int ball_y){
 
 	for(i = 0; i < MAX_PROJECTILES_Y; i++)
 	{
-			for(j = 0; j < MAX_PROJECTILES_X; j++)
+			//for(j = 0; j < MAX_PROJECTILES_X; j++)
 			{
-				if(invaders_map[j][i])
+				//if(invaders_map[j][i])
 				{
-					//6 je precnik loptice 12 sirina cigle 32 sirina reda
-
-					if((ball_y-6 == i*32+12) /*&& (ball_x >= (j*4-2)) && (ball_x <= (j*4+2))*/){
+					if((ball_y-6 == i*32+12) /*&& (ball_y >=14 + 32*row[i]) && (ball_x >= (j*8-2)) && (ball_x <= (j*8+2))*/){
 
 
 									/*for (y = 2 + j; y < 14 + j; y++)
