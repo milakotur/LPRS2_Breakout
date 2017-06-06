@@ -17,10 +17,10 @@ int ball_angle=70;
 void init_colors()
 {
 	/* Define colors */
-	VGA_PERIPH_MEM_mWriteMemory(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR + 0x10, 0x27104f);	//color 0 teget
-	VGA_PERIPH_MEM_mWriteMemory(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR + 0x14, 0x90edac);	//color 1 zelena
+	VGA_PERIPH_MEM_mWriteMemory(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR + 0x10, 0xCD2990);	//color 0 roza
+	VGA_PERIPH_MEM_mWriteMemory(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR + 0x14, 0xCD96CD);	//color 1 lila
 	VGA_PERIPH_MEM_mWriteMemory(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR + 0x18, 0xff0000);	//color 2 crvena
-	VGA_PERIPH_MEM_mWriteMemory(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR + 0x1C, 0xd02090);	//color 3 roza
+	VGA_PERIPH_MEM_mWriteMemory(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR + 0x1C, 0xEEEE00);	//color 3 zuta
 	VGA_PERIPH_MEM_mWriteMemory(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR + 0x20, 0x00ffff);	//color 4
 	VGA_PERIPH_MEM_mWriteMemory(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR + 0x24, 0xff00ff);	//color 5
 	VGA_PERIPH_MEM_mWriteMemory(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR + 0x28, 0xffff00);	//color 6
@@ -193,28 +193,30 @@ int get_angle(int x, int y, int angle)
 void sudaranje(int ball_x, int ball_y){
 
 	int i, j;
-	int k, x, y;
+	int k, x, y, m;
 
-	for(i = 0; i < MAX_PROJECTILES_Y; i++)
-	{
-			for(j = 0; j < MAX_PROJECTILES_X; j++)
-			{
-				if(invaders_map[j][i])
-				{
+
+	for(i = 0; i < MAX_PROJECTILES_Y; i++){
+
+			for(j = 0; j < MAX_PROJECTILES_X; j++){
+
+				if(invaders_map[j][i]){
+
 					//6 je precnik loptice 12 sirina cigle 32 sirina reda
 
-					if((ball_y-6 == i*32+12) /*&& (ball_x >= (j*4-2)) && (ball_x <= (j*4+2))*/){
+					if((ball_y-6 == i*32+12) /*&& (ball_x >= (j*8-2)) && (ball_x <= (j*8+2))*/){
 
 
-									/*for (y = 2 + j; y < 14 + j; y++)
-										{
-											for(k = -2; k < 2; k++){
-												x = j*8 + k;
-												i = y*(640/8) + x;
-												PUT_TO_FSL(i, 0x22222222);
-											}
-										}*/
-										for (y = 2 + 5; y < 14 + 5; y++)
+									for (y = 2 + i*32; y < 14 + i*32; y++){
+
+										for(k = -2; k < 2; k++){
+											//x = 5*8 + k;
+											x = j*8 + k;
+											m = y*(640/8) + x;
+											PUT_TO_FSL(m, 0x00000000);
+										}
+									}
+									/*	for (y = 2 + 5; y < 14 + 5; y++)
 										{
 											for(k = -2; k < 2; k++){
 												x = 5*8 + k;
@@ -222,7 +224,7 @@ void sudaranje(int ball_x, int ball_y){
 												PUT_TO_FSL(i, 0x22222222);
 											}
 										}
-
+*/
 
 					}
 				}
